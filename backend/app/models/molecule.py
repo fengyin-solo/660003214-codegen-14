@@ -36,3 +36,18 @@ class ADMETResult(BaseModel):
     bioavailability: float
     ruleOfFive: bool
     violations: int
+
+class CorrectionSuggestion(BaseModel):
+    original: str
+    corrected: str
+    confidence: float
+    reason: str
+    error_type: str
+
+class SmilesCorrectionResponse(BaseModel):
+    original: str
+    is_valid: bool
+    errors: List[str]
+    best_correction: Optional[CorrectionSuggestion] = None
+    suggestions: List[CorrectionSuggestion] = []
+    can_continue: bool
